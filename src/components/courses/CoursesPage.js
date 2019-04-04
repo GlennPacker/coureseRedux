@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loadCourses } from "../../redux/actions/courseActions";
+import { loadCourses, deleteCourse } from "../../redux/actions/courseActions";
 import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseList from "./CourseList";
 import Spinner from "../common/Spinner";
+import { toast } from "react-toastify";
 
 class CoursesPage extends React.Component {
   componentDidMount() {
@@ -23,6 +24,11 @@ class CoursesPage extends React.Component {
     }
   }
 
+  handleDelete = course => {
+    toast.success("Deleted");
+    this.props.deleteCourse(course);
+  };
+
   render() {
     return (
       <>
@@ -39,7 +45,10 @@ class CoursesPage extends React.Component {
               Add Course
             </button>
 
-            <CourseList courses={this.props.courses} />
+            <CourseList
+              courses={this.props.courses}
+              onDeleteClick={this.handleDelete}
+            />
           </>
         )}
       </>
@@ -50,6 +59,7 @@ class CoursesPage extends React.Component {
 CoursesPage.propTypes = {
   authors: PropTypes.array.isRequired,
   courses: PropTypes.array.isRequired,
+  deleteCourse: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   loadCourses: PropTypes.func.isRequired,
@@ -73,6 +83,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+  deleteCourse,
   loadCourses,
   loadAuthors
 };
