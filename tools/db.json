@@ -62,29 +62,6 @@
       "slug": "career-reboot-for-developer-mind",
       "authorId": 1,
       "category": "Career"
-    },
-    {
-      "id": 10,
-      "title": "Web Component Fundamentals",
-      "slug": "web-components-shadow-dom",
-      "authorId": 1,
-      "category": "HTML5"
-    },
-    {
-      "id": 11,
-      "title": "asd",
-      "authorId": 1,
-      "category": "asdasd",
-      "createdAt": 1554304359699,
-      "slug": "asd"
-    },
-    {
-      "id": 12,
-      "title": "aaaa",
-      "authorId": 1,
-      "category": "aaaaaaa",
-      "createdAt": 1554305788699,
-      "slug": "aaaa"
     }
   ],
   "authors": [

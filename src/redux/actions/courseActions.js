@@ -14,6 +14,17 @@ export function createCoursesSucess(course) {
   return { type: actionTypes.CREATE_COURSES_SUCCESS, course };
 }
 
+export function deleteCourseOptomisitic(course) {
+  return { type: actionTypes.DELETE_COURSE_OPTOMISTIC, course };
+}
+
+export function deleteCourse(course) {
+  return function(dispatch) {
+    dispatch(deleteCourseOptomisitic(course));
+    return courseApi.deleteCourse(course.id);
+  };
+}
+
 export function loadCourses() {
   return function(dispatch) {
     dispatch(beginApiCall());
