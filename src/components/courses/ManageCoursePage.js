@@ -17,6 +17,7 @@ function ManageCoursesPage({
 }) {
   const [course, setCourse] = useState({ ...props.course });
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (courses.length === 0) {
@@ -44,6 +45,7 @@ function ManageCoursesPage({
 
   function handleSave(event) {
     event.preventDefault();
+    setSaving(true);
     saveCourse(course).then(() => {
       history.push("/courses");
     });
@@ -56,6 +58,7 @@ function ManageCoursesPage({
       errors={errors}
       onChange={handleChange}
       onSave={handleSave}
+      saving={saving}
     />
   );
 }
