@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as authorApi from "../../api/authorApi";
-import { beginApiCall } from "./apiStatusActions";
+import { beginApiCall, endApiCall } from "./apiStatusActions";
 
 export function loadAuthorsSuccess(authors) {
   return { type: actionTypes.LOAD_AUTHORS_SUCCESS, authors };
@@ -9,8 +9,14 @@ export function loadAuthorsSuccess(authors) {
 export function loadAuthors() {
   return function(dispatch) {
     dispatch(beginApiCall());
-    return authorApi.getAuthors().then(authors => {
-      dispatch(loadAuthorsSuccess(authors));
-    });
+    return authorApi
+      .getAuthors()
+      .then(authors => {
+        dispatch(loadAuthorsSuccess(authors));
+      })
+      .catch(err => {
+        dispatch(endApiCall(err));
+        throw err;
+      });
   };
 }
