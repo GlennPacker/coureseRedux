@@ -5,6 +5,7 @@ import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
+import { toast } from "react-toastify";
 
 function ManageCoursesPage({
   courses,
@@ -47,6 +48,7 @@ function ManageCoursesPage({
     event.preventDefault();
     setSaving(true);
     saveCourse(course).then(() => {
+      toast.success("Saved");
       history.push("/courses");
     });
   }
